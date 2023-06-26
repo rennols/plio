@@ -1,15 +1,18 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
+  reporter: "mochawesome",
+  env: {
+    codeCoverage: {
+      url: 'http://localhost:1234/__coverage__',
+      exclude: 'cypress/**/*.*'
+    }
+  },
   e2e: {
     setupNodeEvents(on, config) {
-      require('@cypress/code-coverage/task')(on, config)
-      // include any other plugin code...
-
-      // It's IMPORTANT to return the config object
-      // with any changed environment variables
-      return config
+      return require('./cypress/plugins/index.ts')(on, config)
     },
+    baseUrl: 'http://localhost:1234'
   },
 
   component: {
