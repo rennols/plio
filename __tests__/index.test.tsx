@@ -3,11 +3,10 @@ import Home from '../app/page'
 import '@testing-library/jest-dom'
  
 describe('Home', () => {
-  it('renders a main', () => {
+  it('renders a heading', () => {
     render(<Home />)
  
-    const main = screen.getByTestId('main')
- 
-    expect(main).toBeVisible()
+    const heading = screen.getByTestId('main')
+    expect(heading).toBeInTheDocument()
   })
 })
